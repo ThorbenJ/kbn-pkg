@@ -1,0 +1,30 @@
+{
+  "name": "kibana-packages-built",
+  "version": "0.0.1",
+  "description": "Some useful Kibana packages pre-built",
+  "author": "Thorben Jändling (https://github.com/ThorbenJ/kibana-packages-built)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThorbenJ/kibana-packages-built.git"
+  },
+  "keywords": [
+    "elasticsearch",
+    "kibana"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@kbn/i18n": "file:./kibana/target/types/packages/kbn-i18n",
+    "@kbn/es-query": "file:./kibana/target/types/packages/kbn-es-query"
+  },
+  "bugs": {
+    "url": "https://github.com/ThorbenJ/kibana-packages-built/issues"
+  },
+  "homepage": "https://github.com/ThorbenJ/kibana-packages-built#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bundleDependencies": [
+    "@kbn/es-query",
+    "@kbn/i18n"
+  ]
+}

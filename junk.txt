@@ -1,0 +1,39 @@
+
+# sed -E 's/"node": "([^"]+)"/"node": ">=\1"/' <package.json.orig >package.json
+#
+#
+# node `which yarn` run kbn bootstrap
+#
+#
+#
+# NJSV=$(node -v)
+#
+# [nix-shell:~/Git/ThorbenJ/kibana-packages-built/kibana]$ echo ${NJSV#v}
+# 16.18.1
+#
+# [nix-shell:~/Git/ThorbenJ/kibana-packages-built/kibana]$ sed -E 's/"node": "([^"]+)"/"node": "'${NJSV#v}'"/' <package.json.orig >package.json
+#
+#
+#
+# sed -E 's/link:/file:/' <package.json.orig >package.json
+#
+# npm install --force
+#
+# npm install intl-format-cache
+#
+# export PATH=$PWD/node_modules/.bin:$PATH
+#
+# ln -s ../node_modules/\@bazel/bazelisk/bazelisk-darwin_arm64 bazel
+
+# NJSV=$(node -v)
+# echo "${NJSV#v}" > .node-version
+
+# test -f WORKSPACE.bazel.orig || cp package.json WORKSPACE.bazel.orig
+# sed -Ee 's/node_version = "[^"]+"/node_version = "'${NJSV#v}'"/' <WORKSPACE.bazel.orig >WORKSPACE.bazel
+# sed -Ee '/^node_repositories[(]/, /^[)]/ s|^|#|' <WORKSPACE.bazel.orig >WORKSPACE.bazel
+# sed -Ee 's/node_version = "[^"]+"/node_version = "'${NJSV#v}'"/' -e '/node_repositories = [{]/, /[}],/ s|^|#|' <WORKSPACE.bazel.orig >WORKSPACE.bazel
+
+# sed -Ee 's/"node": "([^"]+)"/"node": "'${NJSV#v}'"/ p' -e 's/link:/file:/' <package.json.orig >package.json
+
+npm install --force intl-format-cache @bazel/bazelisk yarn
+# npm install --force
