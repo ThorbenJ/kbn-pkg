@@ -1,0 +1,5 @@
+[submodule "kibana"]
+	path = kibana
+	url = https://github.com/elastic/kibana.git
+	shallow = true
+	branch = 8.7
