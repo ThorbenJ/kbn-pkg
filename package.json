@@ -1,11 +1,11 @@
 {
-  "name": "kibana-packages-built",
+  "name": "kbn-pkg",
   "version": "0.0.1",
   "description": "Some useful Kibana packages pre-built",
-  "author": "Thorben Jändling (https://github.com/ThorbenJ/kibana-packages-built)",
+  "author": "Thorben Jändling (https://github.com/ThorbenJ/kbn-pkg)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ThorbenJ/kibana-packages-built.git"
+    "url": "git+https://github.com/ThorbenJ/kbn-pkg.git"
   },
   "keywords": [
     "elasticsearch",
@@ -13,13 +13,24 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@kbn/i18n": "file:./kibana/target/types/packages/kbn-i18n",
-    "@kbn/es-query": "file:./kibana/target/types/packages/kbn-es-query"
+    "@kbn/i18n": "file:./kibana/build/kibana/packages/kbn-i18n",
+    "@kbn/es-query": "file:./kibana/build/kibana/packages/kbn-es-query",
+    "lodash": "^4.17.21",
+    "@babel/runtime": "^7.20.13",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.34",
+    "intl-format-cache": "^2.1.0",
+    "intl-messageformat": "^2.2.0",
+    "intl-relativeformat": "^2.1.0"
+  },
+  "scripts":{
+    "build": "./build.sh",
+    "clean": "./clean.sh"
   },
   "bugs": {
-    "url": "https://github.com/ThorbenJ/kibana-packages-built/issues"
+    "url": "https://github.com/ThorbenJ/kbn-pkg/issues"
   },
-  "homepage": "https://github.com/ThorbenJ/kibana-packages-built#readme",
+  "homepage": "https://github.com/ThorbenJ/kbn-pkg#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

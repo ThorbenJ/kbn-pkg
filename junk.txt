@@ -37,3 +37,35 @@
 
 npm install --force intl-format-cache @bazel/bazelisk yarn
 # npm install --force
+
+
+  "dependencies": {
+    "@kbn/i18n": "file:./kibana/packages/kbn-es-query/target/types/packages/kbn-i18n",
+    "@kbn/peggy": "file:./kibana/packages/kbn-es-query/target/types/packages/kbn-peggy",
+    "@kbn/es-query": "file:./kibana/packages/kbn-es-query/target/types/packages/kbn-es-query"
+  },
+
+
+
+peggy -o target/types/packages/kbn-es-query/src/kuery/grammar/index.js packages/kbn-es-query/src/kuery/grammar/grammar.peggy
+
+
+--no-package-lock --no-save --prefix .
+
+# test -f package.json.orig || cp package.json package.json.orig
+# sed -E -e 's/link:/file:/' <package.json.orig >package.json
+
+# yarn add intl-format-cache
+
+
+> me = require(".")
+{ es_query: [Function (anonymous)], i18n: [Function (anonymous)] }
+> q = me.es_query().buildEsQuery(null, {language:"kuery", query:"host.name:* AND bob:hmm"})
+{ bool: { must: [], filter: [ [Object] ], should: [], must_not: [] } }
+> JSON.stringify(q)
+'{"bool":{"must":[],"filter":[{"bool":{"filter":[{"bool":{"should":[{"exists":{"field":"host.name"}}],"minimum_should_match":1}},{"bool":{"should":[{"match":{"bob":"hmm"}}],"minimum_should_match":1}}]}}],"should":[],"must_not":[]}}'
+
+
+// function _func_name() {
+//     return _func_name.caller.name
+// }

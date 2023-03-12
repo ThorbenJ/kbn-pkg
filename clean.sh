@@ -7,3 +7,6 @@ cd kibana
 git reset --hard
 git clean -dfx .
 
+pkill bazel
+
+true

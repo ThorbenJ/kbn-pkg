@@ -1,37 +1,54 @@
 #!/bin/bash
 
-
-
 cd -- $(dirname -- $0)
+MYWD=$PWD
 
 cd kibana
-
 # You can install nix on most Linux, MacOS and Windows: https://nixos.org/download.html
 # config defined os/software state, using reproducable builds, use different versions of the same thing easily
 
 # Have a shell with Node.js 16.x as that's what Kibana needs
-nix-shell -p nodejs-16_x --run bash <<'_EOM_'
+nix-shell -p nodejs-16_x --run /bin/bash << '_EOM_'
+
+set -e
+
+for e in $(env | cut -f1 -d=); do
+    if [[ "PATH,SHELL,TMPDIR,USER,HOME,PWD,SHLVL" != *"$e"* ]]; then
+        unset $e
+    fi
+done
+export HOME=$PWD
 
 echo "Inside the land of dragons"
-pwd
-node -v
+# env
+# echo ""
+# pwd
+# node -v
 
-test -f package.json.orig || cp package.json package.json.orig
-sed -E -e 's/link:/file:/' <package.json.orig >package.json
+# Pre-empt Kibana's build system
+mkdir -p _local
+cd _local
+npm install --prefix=. @bazel/bazelisk yarn
+export PATH="$PWD/node_modules/.bin:$PATH"
+cd ..
 
-npm install --force @bazel/bazelisk yarn
-# npm install --force
+# which bazel
+# which yarn
 
-export PATH=$PWD/node_modules/.bin:$PATH
-
-yarn add intl-format-cache
-
+# yarn kbn bootstrap
 yarn kbn bootstrap --force-install
 
-peggy -o target/types/packages/kbn-es-query/src/kuery/grammar/index.js packages/kbn-es-query/src/kuery/grammar/grammar.peggy
+yarn build --skip-archives --skip-os-packages --skip-canvas-shareable-runtime --skip-docker-ubi --skip-docker-ubuntu --release
 
 _EOM_
 
+echo "kibana build might fail, but hopefully not before its built the packages we want"
+
+cd $MYPWD
+npm install
+
+
+#
 # Some notes:
 # - Goal is not to build kibana and run it, just select .ts in package/
 # - I want to use nix, to keep this build env away from my normal (shell) env.
@@ -42,3 +59,4 @@ _EOM_
 # - Same for yarn, install local as the global one maybe "linked" against a different node version
 # - node_version_validator.js does very naive version comparison (no support for ^ or ~, etc.)
 # - I don't want to become an expert on this build system, I just need some .js files
+#
