@@ -1,6 +1,6 @@
 {
   "name": "kbn-pkg",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Some useful Kibana packages pre-built",
   "author": "Thorben Jändling (https://github.com/ThorbenJ/kbn-pkg)",
   "repository": {
@@ -13,17 +13,19 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@kbn/i18n": "file:./kibana/build/kibana/packages/kbn-i18n",
-    "@kbn/es-query": "file:./kibana/build/kibana/packages/kbn-es-query",
-    "lodash": "^4.17.21",
     "@babel/runtime": "^7.20.13",
-    "moment": "^2.29.4",
-    "moment-timezone": "^0.5.34",
+    "@kbn/es-query": "file:./kibana/build/kibana/packages/kbn-es-query",
+    "@kbn/i18n": "file:./kibana/build/kibana/packages/kbn-i18n",
+    "@kbn/safer-lodash-set": "file:./kibana/build/kibana/packages/kbn-safer-lodash-set",
     "intl-format-cache": "^2.1.0",
     "intl-messageformat": "^2.2.0",
-    "intl-relativeformat": "^2.1.0"
+    "intl-relativeformat": "^2.1.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.34"
   },
-  "scripts":{
+  "scripts": {
+    "test": "node ./testme.js",
     "build": "./build.sh",
     "clean": "./clean.sh"
   },
@@ -31,11 +33,9 @@
     "url": "https://github.com/ThorbenJ/kbn-pkg/issues"
   },
   "homepage": "https://github.com/ThorbenJ/kbn-pkg#readme",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "bundleDependencies": [
     "@kbn/es-query",
-    "@kbn/i18n"
+    "@kbn/i18n",
+    "@kbn/safer-lodash-set"
   ]
 }

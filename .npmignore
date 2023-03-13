@@ -6,4 +6,4 @@ node_modules
 kibana
 *.sh
 *.txt
-
+.git*
