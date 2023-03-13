@@ -45,7 +45,8 @@ _EOM_
 echo "kibana build might fail, but hopefully not before its built the packages we want"
 
 cd $MYPWD
-npm install
+
+# npm install
 
 
 #
