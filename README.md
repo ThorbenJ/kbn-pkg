@@ -1,7 +1,7 @@
-# kibana-packages-built
+# kbn-pkg
 
-Building Kibana Typescript packages for reuse in nodejs
-
+Kibana @kbn packages prebuilt and ready to us;
+by building Kibana Typescript packages for reuse in nodejs
 
 
 ## Install
@@ -17,7 +17,7 @@ npm install ./kbn-pkg-a.b.c.tgz
 ### Note
 
 Unless you intend to build kibana (and have nix installed) cloning this repo will not get you a working
-module.
+module. Use the release module packs.
 
 ## Licensing
 
